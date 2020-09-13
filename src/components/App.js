@@ -1,6 +1,5 @@
 import React from 'react';
 import Input from './Input';
-import CardList from './CardList';
 
 const App = () => {
     return (
@@ -10,9 +9,6 @@ const App = () => {
             </div>
             <div>
                 <Input />
-            </div>
-            <div>
-                <CardList />
             </div>
         </div>
     )

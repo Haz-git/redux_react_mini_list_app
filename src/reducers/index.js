@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 
 //Reducers
 
-const groceryItemReducer = (existingGroceryList = [], action) => {
+const groceryItemReducer = (totalGroceryList = [], action) => {
     if (action.type === 'GROCERY_ITEM') {
-        return action.payload;
+        return {
+            groceries: [...totalGroceryList, action.payload.item]
+        }
     } else {
-        return existingGroceryList;
+        return totalGroceryList;
     }
 }
 
