@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { groceryListCreator } from '../actions';
 
-const Input = ({ groceryListCreatorAction }) => {
+const Input = ({ groceryListCreator }) => {
 
     const [ submitNameValue, setSubmitNameValue ] = useState('');
-    const [ submitAmountValue, setSubmitAmountValue ] = useState(0);
+    // const [ submitAmountValue, setSubmitAmountValue ] = useState(0);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setSubmitNameValue(event.target.value);
         console.log(submitNameValue);
-        console.log(submitAmountValue);
-        groceryListCreatorAction({ submitNameValue, submitAmountValue });
+        groceryListCreator({submitNameValue});
+        setSubmitNameValue('');
     }
 
     return (
@@ -19,13 +20,13 @@ const Input = ({ groceryListCreatorAction }) => {
             <div className='ui form'>
                 <div className='field'>
                     <label>Grocery Item</label>
-                    <input type='text' onChange={(e) => setSubmitNameValue(e.target.value)}></input>
+                    <input value={submitNameValue} type='text' onChange={(e) => setSubmitNameValue(e.target.value)}></input>
                 </div>
-                <div className='ui right labeled input'>
+                {/* <div className='ui right labeled input'>
                     <label className='ui label'>$</label>
                     <input type='number' placeholder='Amount' onChange={(e) => setSubmitAmountValue(e.target.value)}></input>
                     <div className='ui basic label'>.00</div>
-                </div>
+                </div> */}
                 <div>
                     <button type='submit' className='ui primary button'>
                         Submit
@@ -41,7 +42,7 @@ const Input = ({ groceryListCreatorAction }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        groceryListCreatorAction: (name, amount) => dispatch(groceryListCreator(name, amount))
+        groceryListCreator: grocery => dispatch(groceryListCreator(grocery))
     }
 }
 

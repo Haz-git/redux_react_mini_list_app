@@ -1,15 +1,19 @@
-import { combineReducers } from 'redux';
+
 
 //Reducers
 
-const groceryItemReducer = (totalGroceryList = [], action) => {
-    if (action.type === 'GROCERY_ITEM') {
-        return {
-            groceries: [...totalGroceryList, action.payload.item]
-        }
-    } else {
-        return totalGroceryList;
-    }
+const initialState = {
+    groceries: []
 }
 
-export default combineReducers({ groceryItemReducer });
+const groceryItemReducer = (state = initialState, action) => {
+    if (action.type === 'GROCERY_ITEM') {
+        return Object.assign({}, state, {
+            groceries: state.groceries.concat(action.payload)
+        });
+    }
+
+    return state;
+}
+
+export default groceryItemReducer;

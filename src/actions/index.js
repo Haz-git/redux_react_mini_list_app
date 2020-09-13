@@ -3,13 +3,10 @@
 //Returns objects with a type and payload:
 //Let's do a grocery list:
 
-export const groceryListCreator = (item, amount) => {
+export const groceryListCreator = (payload) => {
     return {
         type: 'GROCERY_ITEM',
-        payload: {
-            item: item,
-            amount: amount,
-        }
+        payload: payload,
     }
 }
 
